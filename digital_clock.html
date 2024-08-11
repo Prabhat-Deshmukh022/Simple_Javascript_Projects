@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+        }
+
+        h2 {
+            color: whitesmoke;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h2>Digital Clock</h2>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+
+    <script>
+        let p = document.createElement("p");
+
+        const sayDate = function (str) {
+            const date = new Date();
+            console.log(`${str} Date is ${date.toLocaleTimeString()}`);
+            p.innerHTML = date.toLocaleTimeString();
+            if (!document.querySelector("body").contains(p)) {
+                document.querySelector("body").appendChild(p);
+            }
+        }
+
+        let setInt;
+
+        document.getElementById("start").addEventListener("click", () => {
+            setInt = setInterval(sayDate, 1000, "Time is: ");
+        });
+
+        document.getElementById("stop").addEventListener("click", () => {
+            clearInterval(setInt);
+        });
+    </script>
+</body>
+</html>
